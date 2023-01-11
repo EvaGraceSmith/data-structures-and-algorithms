@@ -79,7 +79,11 @@ Write a function named forEachTwoToThe that produces the same output as your for
 ------------------------------------------------------------------------------------------------ */
 
 const forEachTwoToThe = (arr) => {
-  // Solution code here...
+  let newArray=[];
+  arr.forEach((number)=>{
+    newArray.push(Math.pow(2,number))
+  });
+  return newArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -89,15 +93,23 @@ Write a function named mapTwoToThe that produces the same output as your forLoop
 ------------------------------------------------------------------------------------------------ */
 
 const mapTwoToThe = (arr) => {
-  // Solution code here...
+  const myArray = arr.map((number) =>{
+    return Math.pow(2, number);
+  });
+return myArray
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
 
-Write a function named charCode that, given an array of letters as an input, uses map to return a new array where each element is the result of the `charCodeAt` method on the original array element.
+Write a function named charCode that,
+given an array of letters as an input,
+uses map to return a new array where each element is
+the result of the `charCodeAt` method on the original
+ array element.
 
-Read the MDN documentation on String.charCodeAt() if necessary.
+Read the MDN documentation on String.charCodeAt()
+if necessary.
 
 For example: charCode(['h','i']) returns [104, 105].
 ------------------------------------------------------------------------------------------------ */
@@ -264,7 +276,7 @@ describe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should return two raised to the power of the integer', () => {
     expect(mapTwoToThe([0, 4, 5])).toStrictEqual([1, 16, 32]);
     expect(mapTwoToThe([0, 4, 5]).length).toStrictEqual(3);
