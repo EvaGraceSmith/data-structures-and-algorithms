@@ -139,7 +139,7 @@ const evenOdd = (arr) => {
     return ('N/A');
     else if (number %2 ===0)
     return ('even');
-    else 
+    else
     return ('odd');
 
   });
@@ -189,7 +189,12 @@ const snorlaxAbilities = {
 };
 
 const extractAbilities = (arr) => {
-  // Solution code here...
+  let myArray=arr.map((string)=>{
+    // console.log ("sting = ", string, "\n  string.ability = ", string.ability, "\n string.ability.name = ", string.ability.name);
+return string.ability.name;
+  });
+
+  return myArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -330,14 +335,14 @@ describe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should return an array containing only the ability names', () => {
     expect(extractAbilities(snorlaxAbilities.abilities)).toStrictEqual(['gluttony', 'cute charm', 'immunity']);
     expect(extractAbilities(snorlaxAbilities.abilities).length).toStrictEqual(3);
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('It should return an array containing objects with name and total values', () => {
     expect(extractStats(snorlaxStats.stats)).toStrictEqual([
       { name: 'speed', total: 35, },
