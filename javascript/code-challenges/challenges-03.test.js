@@ -22,13 +22,14 @@ For example, typeNum([1, 'bob' ,3]) returns [1,3].
 ------------------------------------------------------------------------------------------------ */
 
 const typeNum = (arr) => {
-  const myArray = arr.filter(checkNumber);
+  const myArray = arr.filter(function(nuts){
+    return !isNaN(nuts);
+  });
 
-  function checkNumber(num){
-    return num=isNumber();
-  }
   return myArray;
-};
+  };
+
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
