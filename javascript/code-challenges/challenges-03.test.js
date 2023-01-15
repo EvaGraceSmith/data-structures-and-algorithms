@@ -72,7 +72,7 @@ For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 ------------------------------------------------------------------------------------------------ */
 
 const notInFirstArray = (forbiddenValues, arr) => {
-  console.log(forbiddenValues, arr);
+
   let myArray = arr.filter((value1)=> !forbiddenValues.some((value2)=> value1 === value2));
 
 
@@ -215,7 +215,20 @@ For example: evenOddNumericValues(['Gregor', 2, 4, 1]) returns ['even', 'even', 
 ------------------------------------------------------------------------------------------------ */
 
 const evenOddNumericValues = (arr) => {
-  // Solution code here...
+  const myNumberArray = arr.filter(function(nuts){
+    return (typeof(nuts)==='number');
+});
+
+console.log(myNumberArray);
+
+let myArray=myNumberArray.map((number)=>{
+if (number %2 ===0)
+  return ('even');
+  else
+  return ('odd');
+
+});
+return myArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
