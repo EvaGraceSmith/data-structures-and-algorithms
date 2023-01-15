@@ -56,8 +56,9 @@ For example, oddValues([1,2,3]) returns [1,3].
 
 const oddValues = (arr) => {
   const myArray = arr.filter ((anyName)=>{
-    return anyName%2
-  })
+    return anyName%2 === 1;
+  });
+  return myArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -69,7 +70,12 @@ For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 ------------------------------------------------------------------------------------------------ */
 
 const notInFirstArray = (forbiddenValues, arr) => {
-  // Solution code here...
+  console.log(forbiddenValues, arr);
+  let myArray = arr.filter((value1)=> !forbiddenValues.some((value2)=> value1 === value2));
+
+
+  return myArray;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -112,7 +118,13 @@ const snorlaxData = {
 };
 
 const getBaseStatGreaterThan = (arr, minBaseStat) => {
-  // Solution code here...
+  let myArray= arr.filter((value1)=>{
+    if(value1.baseStat > minBaseStat)
+    return true;
+
+  } );
+
+  return myArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -125,6 +137,7 @@ For example, getStatName(snorlaxData.stats, 50) will return ['special-defense', 
 
 const getStatName = (arr, minBaseStat) => {
   // Solution code here...
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -227,7 +240,7 @@ describe('Testing challenge 3', () => {
   });
 });
 
-ddescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return an array containing only odd integers', () => {
     expect(oddValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])).toStrictEqual([1, 3, 5, 7, 9]);
     expect(oddValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).length).toStrictEqual(5);
@@ -236,7 +249,7 @@ ddescribe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   const firstNums = [1, 2, 3];
   const secondNums = [1, 2, 3, 4];
 
@@ -260,7 +273,7 @@ xdescribe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should return an array containing the stats that are greater than the input', () => {
     expect(getBaseStatGreaterThan(snorlaxData.stats, 75)).toStrictEqual([ { stat: { url: 'https://pokeapi.co/api/v2/stat/5/', name: 'special-defense' }, effort: 2, baseStat: 110 } ]);
     expect(getBaseStatGreaterThan(snorlaxData.stats, 75).length).toStrictEqual(1);
