@@ -200,8 +200,22 @@ const meetings = [
 ];
 
 const sortMeetingsByDay = (arr) => {
-  // Solution code here...
-};
+
+
+    const map={
+      'Monday':1,
+      'Tuesday':2,
+      'Wednesday':3,
+      'Thursday':4,
+      'Friday':5,
+    };
+
+
+    arr.sort((a, b) => {
+      return map[a.dayOfWeek] - map[b.dayOfWeek];
+    });
+    return arr;
+  };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 13 - Stretch Goal
@@ -212,10 +226,35 @@ Sort the meetings in the order that they start. If two meetings start at the sam
 
 You DO NOT need to use your solution to Challenge 12 in completing Challenge 13.
 ------------------------------------------------------------------------------------------------ */
-
 const sortSchedule = (arr) => {
-  // Solution code here...
-};
+  const map={
+    'Monday':1,
+    'Tuesday':2,
+    'Wednesday':3,
+    'Thursday':4,
+    'Friday':5,
+  };
+
+
+  arr.sort((a, b) => {
+    return map[a.dayOfWeek] - map[b.dayOfWeek];
+  });
+
+
+  arr.sort((a,b) => {
+    if (a.dayOfWeek===b.dayOfWeek){
+    if (a.start < b.start){return a.start-b.start}
+    if (a.start===b.start){
+  {return (a.end-a.start)-(b.end-b.start)}
+    }
+  }
+
+  });
+
+  return arr;
+  }
+
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
@@ -348,7 +387,7 @@ describe('Testing challenge 11', () => {
   });
 });
 
-xdescribe('Testing challenge 12', () => {
+describe('Testing challenge 12', () => {
   test('It should sort meetings by the day on which they happen', () => {
     const sortedMeetings = sortMeetingsByDay(meetings);
     expect(sortedMeetings.slice(0,2)).toEqual(expect.arrayContaining([new Meeting('Monday', '0900', '0945'), new Meeting('Monday', '0900', '1000')]));
@@ -358,7 +397,7 @@ xdescribe('Testing challenge 12', () => {
   });
 });
 
-xdescribe('Testing challenge 13', () => {
+describe('Testing challenge 13', () => {
   test('It should sort meetings by when they happen', () => {
     expect(sortSchedule(meetings)).toStrictEqual([
       new Meeting('Monday', '0900', '0945'),
