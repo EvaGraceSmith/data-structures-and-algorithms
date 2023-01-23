@@ -198,7 +198,13 @@ const characters = [
 ];
 
 const countNumberOfChildren = (arr) => {
-  // Solution code here...
+  let total = arr.reduce ((acc,val)=>
+  {
+    let childrenCount=0;
+if (val.children!=null){childrenCount=val.children.length}
+    return (acc+childrenCount);
+  }, 0);
+  return total;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -210,7 +216,11 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 ------------------------------------------------------------------------------------------------ */
 
 const calculateAverage = (arr) => {
-  // Solution code here...
+  let myArr =arr.reduce((acc,val)=> {
+let updatedSum= {count:acc.count +1, sum: acc.sum + val};
+    return( updatedSum); }
+        , { count: 0, sum: 0 });
+    return myArr.sum/myArr.count;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -231,7 +241,13 @@ const isPrime = (value) => {
 };
 
 const countPrimeNumbers = (arr) => {
-  // Solution code here...
+  let total = arr.reduce ((acc,val)=>
+  {
+    let primeCount=0;
+if (isPrime(val)!=0){primeCount++}
+    return (acc+primeCount);
+  }, 0);
+  return total;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -273,7 +289,12 @@ const snorlaxData = {
 };
 
 const extractStats = (snorlaxData) => {
-  // Solution code here...
+  let myArr =snorlaxData.reduce((acc,val)=> {
+    console.log(acc);
+    let updatedSum= {val};
+        return( updatedSum); }
+            , { });
+        return myArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -344,19 +365,19 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return the total number of children', () => {
     expect(countNumberOfChildren(characters)).toStrictEqual(14);
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should return the average of the numbers in the array', () => {
     expect(calculateAverage([18, 290, 37, 4, 55, 16, 7, 85 ])).toStrictEqual(64);
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should return a count of the prime numbers in the array', () => {
     expect(countPrimeNumbers([1, 2, 13, 64, 45, 56, 17, 8])).toStrictEqual(3);
   });
