@@ -59,7 +59,8 @@ Write a function named joinArray that takes an array and joins all of the elemen
 ------------------------------------------------------------------------------------------------ */
 
 const joinArray = (arr) => {
-  // Solution code here...
+
+return arr.join(' ');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -78,6 +79,22 @@ For example, if the input is 'Welcome', the output will be:
 const howMuchPencil = (str) => {
   let result = [];
   // Solution code here...
+  // a loop that removes one letter of the string on each iteration.
+//make string into an array using split?
+
+let arr= str.split('');
+let length = arr.length
+result.push(arr.join(''));
+for (let i=0; i<length; i++){
+  arr.splice(0,1);
+  console.log(arr);
+
+  result.push(arr.join(''));
+  console.log(result)
+}
+
+
+  //returns the remaining string after each iteration.
   return result;
 };
 
@@ -271,13 +288,13 @@ describe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should join an array', () => {
     expect(joinArray(['hello', '301', 'students'])).toStrictEqual('hello 301 students');
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return a list of shortening words', () => {
     expect(howMuchPencil('Welcome')).toStrictEqual(['Welcome', 'elcome', 'lcome', 'come', 'ome', 'me', 'e', '']);
     expect(howMuchPencil('Welcome').length).toStrictEqual(8);
