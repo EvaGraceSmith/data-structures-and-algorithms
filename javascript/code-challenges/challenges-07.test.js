@@ -161,9 +161,19 @@ const listFoods = (recipe) => {
 //then will take off the front two items in each new array ex: ingredients.slice(2)
   //then return the array items back into strings ex arr.join(' ')
   //then return the array (named result)
+  // arr.slice(2)
 
-console.log(recipe.ingredients.slice(2));
-  return result(recipe.ingredients.slice(2));
+  recipe.ingredients.forEach(element => {
+    let newarray=[...element];
+    //slice off the everything before the first two spaces
+    for(let i=0; i<2; i++){
+      newarray= newarray.slice(newarray.indexOf(' ') + 1);
+    }
+    result.push(newarray.join(''));
+  });
+
+   //console.log(result);
+   return (result);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -176,7 +186,16 @@ You may also use other string or array methods.
 
 const splitFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+    //need to loop throught the length of the ingredient array and turn
+    recipe.ingredients.forEach(element => {
+    //each string into an array  ex : let words = str.split(' ');
+    let words = element.split(' ');
+    //then will take off the front two items in each new array ex: ingredients.slice(2)
+    words = words.slice(2)
+    //then return the array items back into strings ex arr.join(' ')
+    result.push(words.join(' '));
+  });
+  //then return the array (named result)
   return result;
 };
 
@@ -193,6 +212,9 @@ Return a new array containing just the verbs. For example, ['Mix until evenly di
 const stepActions = (recipe) => {
   let result = [];
   // Solution code here...
+  recipe.steps.forEach(element => {
+    result.push(element.split(' ')[0]);
+  });
   return result;
 };
 
@@ -327,20 +349,20 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return a list of foods', () => {
     expect(splitFoods(gruffaloCrumble)).toStrictEqual(['Gruffalo', 'oats', 'brown sugar', 'flour', 'pure maple syrup', 'chopped nuts', 'baking soda', 'baking powder', 'cinnamon', 'melted butter', 'fresh water']);
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should return a list of recipe steps', () => {
     expect(stepActions(gruffaloCrumble)).toStrictEqual(['Pre-heat', 'De-prickle', 'Sprinkle', 'Mix', 'Grease', 'Combine', 'Fold', 'Spread', 'Bake']);
     expect(stepActions(gruffaloCrumble).length).toStrictEqual(9);
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should remove the even numbers from the array', () => {
     let list = [1, 2, 3, 4, 5, 6];
     removeEvenValues(list);
