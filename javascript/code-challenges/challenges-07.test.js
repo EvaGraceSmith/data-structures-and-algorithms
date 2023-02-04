@@ -38,7 +38,8 @@ let starWarsPeople = [
 // };
 
 const sortStarWarsCharacters = (starWarsArr) => {
-  // Solution code here...
+  let myArray=starWarsArr.sort(function(a, b){return b.height-a.height});
+  return myArray
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -87,10 +88,10 @@ let length = arr.length
 result.push(arr.join(''));
 for (let i=0; i<length; i++){
   arr.splice(0,1);
-  console.log(arr);
+  // console.log(arr);
 
   result.push(arr.join(''));
-  console.log(result)
+  // console.log(result)
 }
 
 
@@ -107,7 +108,7 @@ For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
 ------------------------------------------------------------------------------------------------ */
 
 const wordsToCharList = (arr) => {
-  // Solution code here...
+  return(arr.split(''));
 };
 
 
@@ -154,8 +155,15 @@ const gruffaloCrumble = {
 
 const listFoods = (recipe) => {
   let result = [];
-  // Solution code here...
-  return result;
+  //need to loop throught the length of the ingredient array and turn
+  //each string into an array  ex : let words = str.split(' ');
+
+//then will take off the front two items in each new array ex: ingredients.slice(2)
+  //then return the array items back into strings ex arr.join(' ')
+  //then return the array (named result)
+
+console.log(recipe.ingredients.slice(2));
+  return result(recipe.ingredients.slice(2));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -275,7 +283,7 @@ Run your tests from the console: jest challenges-05.test.js
 
 ------------------------------------------------------------------------------------------------ */
 
-xdescribe('Testing challenge 1', () => {
+describe('Testing challenge 1', () => {
   test('It should sort the star wars characters by height from tallest to shortest', () => {
     expect(sortStarWarsCharacters(starWarsPeople)[0]['name']).toStrictEqual('Luke Skywalker');
     expect(sortStarWarsCharacters(starWarsPeople)[2]['height']).toStrictEqual('96');
@@ -303,7 +311,7 @@ describe('Testing challenge 4', () => {
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should return an array of individual letters', () => {
     expect(wordsToCharList('Gregor')).toStrictEqual(['G', 'r', 'e', 'g', 'o', 'r']);
     expect(wordsToCharList('Gregor').length).toStrictEqual(6);
@@ -312,7 +320,7 @@ xdescribe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should return a list of foods', () => {
     expect(listFoods(gruffaloCrumble)).toStrictEqual(['Gruffalo', 'oats', 'brown sugar', 'flour', 'pure maple syrup', 'chopped nuts', 'baking soda', 'baking powder', 'cinnamon', 'melted butter', 'fresh water']);
     expect(listFoods(gruffaloCrumble).length).toStrictEqual(11);
