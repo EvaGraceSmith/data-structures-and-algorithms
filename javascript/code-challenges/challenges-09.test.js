@@ -9,13 +9,13 @@ using the 'reduce' method.
 E.g. [4,2,7,5,9,2] -> 9
 ------------------------------------------------------------------------------------------------ */
 const maxInArray = (arr) => {
-let largeNum= arr.reduce(function(accumulator,value){
-  if (value > accumulator){
-  return value;
-}
-else return accumulator;
-})
-return largeNum;
+  let largeNum = arr.reduce(function(accumulator,value) {
+    if (value > accumulator){
+      return value
+    }
+    else return accumulator;
+  });
+  return largeNum;
 };
 
 /* ------------------------------------------------------------------------------------------------
