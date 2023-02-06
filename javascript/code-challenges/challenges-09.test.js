@@ -247,7 +247,23 @@ const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
 
 const houseSurvivors = (arr) => {
   const survivors = [];
-  // Solution code here...
+  for (let i = 0; i < arr.length; i++) {
+    let house = arr[i];
+    let members = house.members;
+    let count = 0;
+
+    for (let j = 0; j < members.length; j++) {
+      let member = members[j];
+      if (!deceasedSpouses.includes(member.name)) {
+        count++;
+      }
+    }
+
+    survivors.push({
+      name: house.name,
+      members: count
+    });
+  }
   return survivors;
 };
 
@@ -340,7 +356,7 @@ describe('Testing challenge 9', () => {
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('It should not include any deceased spouses', () => {
     expect(houseSurvivors(characters)[2]).toStrictEqual({ house: 'Lannister', members: 4 });
   });

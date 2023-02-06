@@ -53,17 +53,13 @@ let characters = [
 ];
 
 const sortByChildren = (charArray) => {
-  return arr.sort((a, b) => {
-
-    if (a.lastName.localeCompare(b.lastName)!==0){
-      return a.lastName.localeCompare(b.lastName)
-    }
-     if (a.firstName.localeCompare(b.firstName)!==0){
-      return a.firstName.localeCompare(b.firstName)
-     }
-
-    else {return a.age-b.age}
-      });
+    return charArray.sort((a, b) => {
+      if (a.children.length !== b.children.length) {
+        return a.children.length - b.children.length;
+      } else {
+        return a.name.localeCompare(b.name);
+      }
+    });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -74,7 +70,8 @@ Write a function named containsW that takes in a string. This function should us
 ------------------------------------------------------------------------------------------------ */
 
 const containsW = (str) => {
-  // Solution code here...
+  const pattern = /w/;
+  return pattern.test(str);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -90,7 +87,7 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const isNum = (input) => {
-  // Solution code here...
+  return /\d/.test(input);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -101,7 +98,9 @@ Write a function named containsWorld that takes in a string or number of any len
 ------------------------------------------------------------------------------------------------ */
 
 const containsWorld = (input) => {
-  // Solution code here...
+
+  const pattern = /world/;
+  return pattern.test(input.toString());
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -113,7 +112,10 @@ Return an array containing all the matches.
 ------------------------------------------------------------------------------------------------ */
 
 const isCapitalized = (str) => {
-  // Solution code here...
+
+  const pattern = /\b[A-Z][a-z]+\b/g;
+  return str.match(pattern) || [];
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -123,7 +125,16 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 ------------------------------------------------------------------------------------------------ */
 
 const citiesAtoJ = (arr) => {
-  // Solution code here...
+  let pattern = /^[A-J]/;
+  let citiesAtoJ = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (pattern.test(arr[i])) {
+      citiesAtoJ.push(arr[i]);
+    }
+  }
+
+  return citiesAtoJ;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -139,7 +150,8 @@ Do not use the vertical bar (pipe) in your pattern.
 ------------------------------------------------------------------------------------------------ */
 
 const matchMonth = (input) => {
-  // Solution code here...
+  let pattern = /^[Oo]ct(ober)?$/;
+  return pattern.test(input);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -153,7 +165,9 @@ The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "
 ------------------------------------------------------------------------------------------------ */
 
 const noPunctuation = str => {
-  // Solution code here...
+  let pattern = /\b\w+\b( )/g;
+  let words = str.match(pattern);
+  return words ? words : [];
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -169,7 +183,9 @@ For example, 'Welcome to Code 301!' will return 'W_lc_m_ t_ C_d_ 301!'.
 ------------------------------------------------------------------------------------------------ */
 
 let hangman = (str) => {
-  // Solution code here...
+
+  let pattern = /[aeiou]/gi;
+  return str.replace(pattern, "_");
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -185,7 +201,8 @@ Hint: All of these words end with the letters "ells".
 const seashells = 'She sells seashells by the seashore. The shells she sells are surely seashells. So if she sells shells on the seashore, I\'m sure she sells seashore shells.';
 
 const findShells = (str) => {
-  // Solution code here...
+  const pattern = /\w*ells/g;
+  return str.match(pattern) || [];
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -273,7 +290,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should match any of the acceptable inputs', () => {
     expect(matchMonth('Oct')).toBeTruthy();
     expect(matchMonth('oct')).toBeTruthy();
@@ -291,7 +308,7 @@ xdescribe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lacinia vel massa sed egestas. Nunc faucibus iaculis elit, a scelerisque enim condimentum sed. Aenean ac scelerisque sem, et pharetra diam.';
 
   test('It should only return words that are immediately followed by a space', () => {
@@ -305,7 +322,7 @@ xdescribe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   let startString = 'This is a regex challenge. We are trying to create a hangman phrase where all of the vowels are missing!';
 
   test('It should remove the vowels from the hangman string and replace them with underscores', () => {
@@ -318,7 +335,7 @@ xdescribe('Testing challenge 9', () => {
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('It should return an array of instances of "sells", shells", and "seashells"', () => {
     expect(findShells(seashells)).toStrictEqual(['sells', 'seashells', 'shells', 'sells', 'seashells', 'sells', 'shells', 'sells', 'shells']);
     expect(findShells(seashells).length).toStrictEqual(9);
