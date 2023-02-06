@@ -24,18 +24,7 @@ let starWarsPeople = [
   }
 ];
 
-// const sortNumbers = (arr) => {
-//   let myArray=arr.sort(function (a, b){return a-b});
-//   return myArray
-// };
 
-// const returnNames = (arr) => {
-//   let total = arr.reduce((acc, val) => {
-//     acc.push(val.name);
-//     return (acc);
-//   }, []);
-//   return total;
-// };
 
 const sortStarWarsCharacters = (starWarsArr) => {
   let myArray=starWarsArr.sort(function(a, b){return b.height-a.height});
