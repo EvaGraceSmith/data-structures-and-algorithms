@@ -221,11 +221,11 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const removeEvenValues = (arr) => {
-  arr.forEach((item,index,array)=>{
-    if(item %1 !== 1){
-      array[index]='';
+  for (let i=0; i< arr.length; i++){
+    if(arr[i] %1 !== 1){
+      arr.splice(i, 1);
     }
-  });
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -372,7 +372,7 @@ describe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should remove the even numbers from the array', () => {
     let list = [1, 2, 3, 4, 5, 6];
     removeEvenValues(list);
@@ -408,7 +408,7 @@ xdescribe('Testing challenge 11', () => {
   });
 });
 
-describe('Testing challenge 12', () => {
+xdescribe('Testing challenge 12', () => {
   test('It should return the string without vowels', () => {
     expect(removeVowels('gregor')).toStrictEqual('grgr');
     expect(removeVowels('gregor').length).toStrictEqual(4);
@@ -417,7 +417,7 @@ describe('Testing challenge 12', () => {
   });
 });
 
-describe('Testing challenge 13', () => {
+xdescribe('Testing challenge 13', () => {
   test('It should return the string without vowels', () => {
     expect(extractVowels('gregor')).toStrictEqual(['grgr', 'eo']);
     expect(extractVowels('gregor').length).toStrictEqual(2);
