@@ -192,9 +192,33 @@ For example, ['Tuesday', 'Monday', 'Wednesday and Thursday', 'Tuesday 2', 'Thurs
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 const sortByDay = (arr) => {
-  // Solution code here...
-};
+  const result = new Array(7).fill([]);
 
+  for (let i = 0; i < arr.length; i++) {
+    const event = arr[i];
+    const days = [];
+
+    // Find all days mentioned in the event
+    for (let j = 0; j < daysOfWeek.length; j++) {
+      const day = daysOfWeek[j];
+
+      if (event.toLowerCase().includes(day.toLowerCase())) {
+        days.push(day);
+      }
+    }
+
+    // Add event to the array for each day mentioned
+    for (let j = 0; j < days.length; j++) {
+      const dayIndex = daysOfWeek.indexOf(days[j]);
+
+      if (dayIndex !== -1) {
+        result[dayIndex] = [...result[dayIndex], event];
+      }
+    }
+  }
+
+  return result;
+};
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 11 - Stretch Goal
 
@@ -205,6 +229,14 @@ For example, ['abcd', 'efgh', 'ijkl', 'mnop'] returns ['a', 'f', 'k', 'p']
 
 const characterByIndex = (arr) => {
   // Solution code here...
+  const result = [];
+
+for(let i=0; i<arr.length; i++){
+if(arr[i].length > i){
+result.push(arr[i][i]);
+}
+}
+return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -316,7 +348,7 @@ describe('Testing challenge 9', () => {
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('It should sort events by the day on which they happen', () => {
     const events = ['Dancing on Mondays and Tuesdays', 'Meet the inventors! Monday, August 7', 'in the club on a Tuesday', 'Thursday Night Code', 'Saturday Night Fever'];
     const sortedEvents = sortByDay(events);
@@ -340,7 +372,7 @@ xdescribe('Testing challenge 10', () => {
   });
 });
 
-xdescribe('Testing challenge 11', () => {
+describe('Testing challenge 11', () => {
   test('It should return the ith character of the ith string', () => {
     const words = ['apple', 'banana', 'cantaloupe'];
 
