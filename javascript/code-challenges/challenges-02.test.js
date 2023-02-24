@@ -245,7 +245,7 @@ const extractStats = (arr) => {
     let object={};
     object.name=sum.stat.name;
     object.total=(sum.effort + sum.baseStat);
-    console.log(object);
+    //console.log(object);
     return object;
   });
   return myArray;

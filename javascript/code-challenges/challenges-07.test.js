@@ -300,7 +300,7 @@ const extractVowels = (str) => {
   let myObj=[];
   myObj.push(myArray);
   myObj.push(myArrayVowles);
-  console.log(myArray+myArrayVowles);
+  //console.log(myArray+myArrayVowles);
   return myObj;
 };
 

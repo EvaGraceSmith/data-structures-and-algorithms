@@ -219,7 +219,7 @@ const evenOddNumericValues = (arr) => {
     return (typeof(nuts)==='number');
 });
 
-console.log(myNumberArray);
+//console.log(myNumberArray);
 
 let myArray=myNumberArray.map((number)=>{
 if (number %2 ===0)

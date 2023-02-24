@@ -223,7 +223,7 @@ const houseSize = (arr) => {
     for (const [house, members] of Object.entries(houses)) {
       sizes.push({ house, members });
     }
-    console.log (sizes);
+   // console.log (sizes);
     return sizes;
 };
 
@@ -249,10 +249,11 @@ const houseSurvivors = (arr) => {
   const survivors = [];
   for (let i = 0; i < arr.length; i++) {
     let house = arr[i];
-    let members = house.members;
+    let members = [];
+    members += house.members;git 
     let count = 0;
 
-    for (let j = 0; j < members.length; j++) {
+    for (let j = 0; members && j < members.length; j++) {
       let member = members[j];
       if (!deceasedSpouses.includes(member.name)) {
         count++;

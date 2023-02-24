@@ -121,7 +121,7 @@ const createList = (availableItems) => {
 let groceryList =[];
 availableItems.forEach((listItem)=>{
   let {name, available}=listItem;
-  console.log(name, available);
+  //console.log(name, available);
     if (available===true){
     groceryList.push(name);
     }
