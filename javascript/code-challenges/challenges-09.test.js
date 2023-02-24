@@ -223,7 +223,7 @@ const houseSize = (arr) => {
     for (const [house, members] of Object.entries(houses)) {
       sizes.push({ house, members });
     }
-    console.log (sizes);
+   // console.log (sizes);
     return sizes;
 };
 
