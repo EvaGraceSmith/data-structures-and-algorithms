@@ -152,6 +152,20 @@ For example, [['Brook Testing', 'Actual Person'], ['Human Person', 'Brook again'
 
 const unenrollBrook = (arr) => {
   // Solution code here...
+  const result = [];
+
+for(let i=0; i<arr.length; i++){
+const course = [];
+
+for(let j=0; j<arr[i].length; j++){
+if(!arr[i][j].includes('Brook')){
+course.push(arr[i][j]);
+}
+}
+result.push(course);
+}
+return result;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -284,7 +298,7 @@ describe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should remove Brook from all courses', () => {
     const roster = [
       ['Michelle', 'Allie', 'Brook TESTING'],
