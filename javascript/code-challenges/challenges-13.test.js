@@ -113,6 +113,13 @@ Write a function named findAnything that takes in an array of strings, along wit
 
 const findAnything = (arr, target) => {
   // Solution code here...
+  const result = [];
+for(let i=0; i<arr.length; i++){
+if(arr[i].includes(target)){
+result.push(arr[i]);
+}
+}
+return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -252,7 +259,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should find all the strings that contain a given string', () => {
     const words = ['things', 'apple (:)', ':)banana', 'missing that thing', 'cant:)aloupe'];
 
