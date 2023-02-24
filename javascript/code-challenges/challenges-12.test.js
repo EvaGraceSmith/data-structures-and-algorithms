@@ -47,9 +47,8 @@ If it does, return true. If not, return false.
 
 const hasNumber = (string) => {
   // Solution code here...
-  return /^[a-zA-Z]+\d+/.test(str);
-}
-;
+    return /^[a-zA-Z]+\d+/.test(string);
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -69,6 +68,7 @@ Note: if you ever need to validate an email using a regex in practice, the Inter
 
 const validateEmail = (email) => {
   // Solution code here...
+ return /^[a-zA-Z0-9]+([.][a-zA-Z0-9]+)?@[a-zA-Z0-9]+\.(com|net|org)$/.test(email);
 };
 
 /* ------------------------------------------------------------------------------------------------
