@@ -52,7 +52,6 @@ resultArr.push(arr[i]);
 }
 }
 return resultArr;
-
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -65,6 +64,12 @@ For example, (123) 456-7890 returns 1234567890
 
 const standardizePhoneNumbers = (arr) => {
   // Solution code here...
+  const resultArr = [];
+for (let i = 0; i < arr.length; i++) {
+const phoneNum = arr[i].replace(/[^0-9]/g, ''); // Remove all non-numeric characters
+resultArr.push(phoneNum);
+}
+return resultArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
