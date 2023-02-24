@@ -249,7 +249,8 @@ const houseSurvivors = (arr) => {
   const survivors = [];
   for (let i = 0; i < arr.length; i++) {
     let house = arr[i];
-    let members = house.members;
+    let members = [];
+    members += house.members;
     let count = 0;
 
     for (let j = 0; j < members.length; j++) {
