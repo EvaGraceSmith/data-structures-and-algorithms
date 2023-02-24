@@ -250,10 +250,10 @@ const houseSurvivors = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     let house = arr[i];
     let members = [];
-    members += house.members;
+    members += house.members;git 
     let count = 0;
 
-    for (let j = 0; j < members.length; j++) {
+    for (let j = 0; members && j < members.length; j++) {
       let member = members[j];
       if (!deceasedSpouses.includes(member.name)) {
         count++;
