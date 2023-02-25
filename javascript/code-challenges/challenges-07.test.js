@@ -302,16 +302,20 @@ Similarly, extractVowels('The quick brown fox') returns ['Th qck brwn fx', 'eioo
 ------------------------------------------------------------------------------------------------ */
 
 const extractVowels = (str) => {
-  let strCopy =str;
-  let myArray = str.split(/a|e|i|o|u/);
-  let myArrayVowles = strCopy.split(/b|c|d|g|h|j|k|l|m|n|p|q|r|s|t|v|w|x|y|z/);
-  myArray= myArray.join('');
-  myArrayVowles= myArrayVowles.join('');
-  let myObj=[];
-  myObj.push(myArray);
-  myObj.push(myArrayVowles);
-  //console.log(myArray+myArrayVowles);
-  return myObj;
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  const consonants = [];
+  const extractedVowels = [];
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charAt(i);
+    if (vowels.includes(char.toLowerCase())) {
+      extractedVowels.push(char.toLowerCase());
+    } else {
+      consonants.push(char);
+    }
+  }
+
+  return [consonants.join(''), extractedVowels.sort().join('')];
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -418,7 +422,7 @@ describe('Testing challenge 11', () => {
   });
 });
 
-xdescribe('Testing challenge 12', () => {
+describe('Testing challenge 12', () => {
   test('It should return the string without vowels', () => {
     expect(removeVowels('gregor')).toStrictEqual('grgr');
     expect(removeVowels('gregor').length).toStrictEqual(4);
@@ -427,7 +431,7 @@ xdescribe('Testing challenge 12', () => {
   });
 });
 
-xdescribe('Testing challenge 13', () => {
+describe('Testing challenge 13', () => {
   test('It should return the string without vowels', () => {
     expect(extractVowels('gregor')).toStrictEqual(['grgr', 'eo']);
     expect(extractVowels('gregor').length).toStrictEqual(2);
