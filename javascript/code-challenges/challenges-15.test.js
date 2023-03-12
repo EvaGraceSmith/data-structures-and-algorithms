@@ -104,11 +104,15 @@ let starWarsData = [{
 }];
 
 let biggerThanLuke = (arr) => {
-  const lukeMass = parseInt(arr.find(character => character.name === 'Luke Skywalker').mass);
-const biggerCharacters = arr.filter(character => parseInt(character.mass) > lukeMass);
-const biggerCharacterNames = biggerCharacters.map(character => character.name);
-const resultString = biggerCharacterNames.join(' - ');
-return resultString;
+  const luke = arr.find((character) => character.name === 'Luke Skywalker');
+  const biggerCharacters = arr.filter((character) => {
+  if (parseInt(character.mass) > parseInt(luke.mass)) {
+  return true;
+  }
+  return false;
+  });
+  const names = biggerCharacters.map((character) => character.name);
+  return names.join(' - ');
 };
 
 
