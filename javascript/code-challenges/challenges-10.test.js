@@ -257,7 +257,7 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -273,7 +273,25 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 const excel = (str) => {
-  // Solution code here...
+    // Split the string into an array of rows
+    const rows = str.split('\n');
+    // Initialize an empty array to store the row sums
+    const rowSums = [];
+    // Loop over each row
+    for (let i = 0; i < rows.length; i++) {
+      // Split the row into an array of column values
+      const columns = rows[i].split(',');
+      // Initialize a sum variable for the current row
+      let rowSum = 0;
+      // Loop over each column and add its value to the row sum
+      for (let j = 0; j < columns.length; j++) {
+        rowSum += parseInt(columns[j], 10);
+      }
+      // Push the row sum to the rowSums array
+      rowSums.push(rowSum);
+    }
+    // Return the array of row sums
+    return rowSums;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -385,7 +403,7 @@ xdescribe('Testing challenge 10', () => {
   });
 });
 
-xdescribe('Testing challenge 11', () => {
+describe('Testing challenge 11', () => {
   test('It should return the total count for each row', () => {
     let result = excel('1,1,1\n4,4,4\n9,9,9');
     expect(result.length).toStrictEqual(3);
