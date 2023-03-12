@@ -148,7 +148,19 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  let numTreats = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].store === 'Pet store') {
+      const petStoreItems = arr[i].items;
+      for (let j = 0; j < petStoreItems.length; j++) {
+        if (petStoreItems[j].name === 'Treats') {
+          numTreats += petStoreItems[j].quantity;
+        }
+      }
+    }
+  }
+  return numTreats;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -300,7 +312,7 @@ describe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should return the number 24', () => {
     expect(howManyTreats(errands)).toStrictEqual(24);
   });
