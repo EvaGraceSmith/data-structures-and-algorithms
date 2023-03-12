@@ -148,7 +148,19 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  let numTreats = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].store === 'Pet store') {
+      const petStoreItems = arr[i].items;
+      for (let j = 0; j < petStoreItems.length; j++) {
+        if (petStoreItems[j].name === 'Treats') {
+          numTreats += petStoreItems[j].quantity;
+        }
+      }
+    }
+  }
+  return numTreats;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -170,7 +182,12 @@ The top row of the board is considered row zero and row numbers increase as they
 ------------------------------------------------------------------------------------------------ */
 
 const battleship = (board, row, col) => {
-  //  Solution code here...
+    if (board[row][col] === '#') {
+      return 'hit';
+    } else {
+      return 'miss';
+    }
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -182,7 +199,11 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 const calculateProduct = (numbers) => {
-  // Solution code here...
+let product = 1;
+for (let i = 0; i < numbers.length; i++) {
+  let innerProduct = 1; for (let j = 0; j < numbers[i].length; j++) { innerProduct *= numbers[i][j]; }
+   product *= innerProduct; }
+   return product;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -202,7 +223,20 @@ const weeklyTemperatures = [
 ];
 
 const averageDailyTemperature = (weather) => {
-  // Solution code here...
+  //in order to sum up the numbers you need to start at zero, let's do that for the temp and the days
+  let temperature = 0;
+  let days = 0;
+  //now let's loop through the weeks
+  for (let i = 0; i < weather.length; i++) {
+    //the inner loop needs to loop through the days of week
+    for (let j = 0; j < weather[i].length; j++) {
+      //now let's add up ALL the temperatures
+      temperature += weather[i][j];
+      days++;
+    }
+  }
+  //adds up all the temperatures and divides them by the days to get the average
+  return temperature / days;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -223,7 +257,7 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -239,7 +273,25 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 const excel = (str) => {
-  // Solution code here...
+    // Split the string into an array of rows
+    const rows = str.split('\n');
+    // Initialize an empty array to store the row sums
+    const rowSums = [];
+    // Loop over each row
+    for (let i = 0; i < rows.length; i++) {
+      // Split the row into an array of column values
+      const columns = rows[i].split(',');
+      // Initialize a sum variable for the current row
+      let rowSum = 0;
+      // Loop over each column and add its value to the row sum
+      for (let j = 0; j < columns.length; j++) {
+        rowSum += parseInt(columns[j], 10);
+      }
+      // Push the row sum to the rowSums array
+      rowSums.push(rowSum);
+    }
+    // Return the array of row sums
+    return rowSums;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -300,13 +352,13 @@ describe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should return the number 24', () => {
     expect(howManyTreats(errands)).toStrictEqual(24);
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   const battleshipData = [
     ['#', ' ', '#', ' '],
     ['#', ' ', '#', ' '],
@@ -325,7 +377,7 @@ xdescribe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should multiply all the numbers together', () => {
     expect(calculateProduct([[1, 2], [3, 4], [5, 6]])).toStrictEqual(720);
   });
@@ -338,7 +390,7 @@ xdescribe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should calculate and return the average temperature of the data set', () => {
     expect(averageDailyTemperature(weeklyTemperatures)).toStrictEqual(60.25);
   });
@@ -351,7 +403,7 @@ xdescribe('Testing challenge 10', () => {
   });
 });
 
-xdescribe('Testing challenge 11', () => {
+describe('Testing challenge 11', () => {
   test('It should return the total count for each row', () => {
     let result = excel('1,1,1\n4,4,4\n9,9,9');
     expect(result.length).toStrictEqual(3);

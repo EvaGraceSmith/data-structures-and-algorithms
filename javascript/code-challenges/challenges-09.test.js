@@ -245,28 +245,26 @@ For example: [ { house: 'Stark', members: 6 }, { house: 'Arryn', members: 2 }, .
 
 const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
 
-const houseSurvivors = (arr) => {
-  const survivors = [];
-  for (let i = 0; i < arr.length; i++) {
-    let house = arr[i];
-    let members = [];
-    members += house.members;git 
-    let count = 0;
+  const houseSurvivors = (arr) => {
+    const sizes = houseSize(arr);
+    const survivors = [];
 
-    for (let j = 0; members && j < members.length; j++) {
-      let member = members[j];
-      if (!deceasedSpouses.includes(member.name)) {
-        count++;
+    for (const size of sizes) {
+      const house = size.house;
+      let members = size.members;
+
+      for (const char of arr) {
+        if (char.house === house && char.spouse && (!deceasedSpouses.includes(char.spouse))) {
+          console.log(char.spouse+ "spouse is deceased " + deceasedSpouses.includes(char.spouse))
+          members++;
+        }
       }
+
+      survivors.push({ house, members });
     }
 
-    survivors.push({
-      name: house.name,
-      members: count
-    });
-  }
-  return survivors;
-};
+    return survivors;
+  };
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
