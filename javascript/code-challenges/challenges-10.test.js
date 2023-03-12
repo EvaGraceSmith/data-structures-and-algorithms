@@ -187,7 +187,7 @@ const battleship = (board, row, col) => {
     } else {
       return 'miss';
     }
-  
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -199,7 +199,11 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 const calculateProduct = (numbers) => {
-  // Solution code here...
+let product = 1;
+for (let i = 0; i < numbers.length; i++) {
+  let innerProduct = 1; for (let j = 0; j < numbers[i].length; j++) { innerProduct *= numbers[i][j]; }
+   product *= innerProduct; }
+   return product;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -219,7 +223,20 @@ const weeklyTemperatures = [
 ];
 
 const averageDailyTemperature = (weather) => {
-  // Solution code here...
+  //in order to sum up the numbers you need to start at zero, let's do that for the temp and the days
+  let temperature = 0;
+  let days = 0;
+  //now let's loop through the weeks
+  for (let i = 0; i < weather.length; i++) {
+    //the inner loop needs to loop through the days of week
+    for (let j = 0; j < weather[i].length; j++) {
+      //now let's add up ALL the temperatures
+      temperature += weather[i][j];
+      days++;
+    }
+  }
+  //adds up all the temperatures and divides them by the days to get the average
+  return temperature / days;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -342,7 +359,7 @@ describe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should multiply all the numbers together', () => {
     expect(calculateProduct([[1, 2], [3, 4], [5, 6]])).toStrictEqual(720);
   });
@@ -355,7 +372,7 @@ xdescribe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should calculate and return the average temperature of the data set', () => {
     expect(averageDailyTemperature(weeklyTemperatures)).toStrictEqual(60.25);
   });
