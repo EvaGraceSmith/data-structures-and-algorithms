@@ -178,7 +178,7 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-    let total = arr.length;;
+    let total = arr.length;
     arr.forEach(char => {
       if (char.children) {
         total += char.children.length;
@@ -244,21 +244,27 @@ For example: [ { house: 'Stark', members: 6 }, { house: 'Arryn', members: 2 }, .
 ------------------------------------------------------------------------------------------------ */
 
 const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
+const survivors = [];
 
   const houseSurvivors = (arr) => {
-    const sizes = houseSize(arr);
-    const survivors = [];
 
-    for (const size of sizes) {
-      const house = size.house;
-      let members = size.members;
-
-      for (const char of arr) {
-        if (char.house === house && char.spouse && (!deceasedSpouses.includes(char.spouse))) {
-          console.log(char.spouse+ "spouse is deceased " + deceasedSpouses.includes(char.spouse))
-          members++;
-        }
-      }
+        let houses = {};
+        arr.forEach(char => {
+          if (!houses[char.house]) {
+            houses[char.house] = 1;
+            if (char.children) {
+              houses[char.house] += char.children.length;
+            }
+            if(char.spouse && (!deceasedSpouses.includes(char.spouse))){
+              houses[char.house]++;
+            }
+          } else {
+            if(char.spouse && (!deceasedSpouses.includes(char.spouse))){
+              houses[char.house]++;
+            }
+          }
+        });
+        for (const [house, members] of Object.entries(houses)) {
 
       survivors.push({ house, members });
     }
@@ -355,7 +361,7 @@ describe('Testing challenge 9', () => {
   });
 });
 
-xdescribe('Testing challenge 10', () => {
+describe('Testing challenge 10', () => {
   test('It should not include any deceased spouses', () => {
     expect(houseSurvivors(characters)[2]).toStrictEqual({ house: 'Lannister', members: 4 });
   });
