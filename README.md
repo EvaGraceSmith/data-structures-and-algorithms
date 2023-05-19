@@ -26,3 +26,4 @@ To run your tests
 [Code Challenge: Class 02 ](javascript/code-challenges/array-insert-shift/README.md)
 [Code Challenge: Class 03 ](javascript/code-challenges/array-binary-search/README.md)
 [Code Challenge: Class 04 ](javascript/code-challenge/fibonacci/README.md)
+[Code Challenge: Class 05 ](javascript/code-challenge/linked-list/README.md)
