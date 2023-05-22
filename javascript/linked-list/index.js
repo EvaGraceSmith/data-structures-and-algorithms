@@ -61,7 +61,25 @@ class LinkedList {
     }
     return false;
   }
+
+
+// The class should contain the following methods toString
+toString() {
+  let current = this.head;
+  let string = '';
+  //goal: "{ a } -> { b } -> { c } -> NULL"
+  while (current) {
+    string += `{ ${current.value} } -> `;
+    current = current.next;
+  }
+  string += 'NULL';
+  return string;
 }
+
+}
+
+
+
 
 let list = new LinkedList();
 list.append('a');
