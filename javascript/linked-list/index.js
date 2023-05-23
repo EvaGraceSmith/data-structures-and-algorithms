@@ -76,6 +76,21 @@ toString() {
   return string;
 }
 
+//From code challenge 06  linked-list-insertions
+insertBefore(value, newVal) {
+  let current = this.head;
+  let previous = null;
+  while (current) {
+    if (current.value === value) {
+      let newNode = new Node(newVal);
+      newNode.next = current;
+      previous.next = newNode;
+      return;
+    }
+    previous = current;
+    current = current.next;
+  }
+
 }
 
 
