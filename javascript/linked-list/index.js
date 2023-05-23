@@ -63,38 +63,73 @@ class LinkedList {
   }
 
 
-// The class should contain the following methods toString
-toString() {
-  let current = this.head;
-  let string = '';
-  //goal: "{ a } -> { b } -> { c } -> NULL"
-  while (current) {
-    string += `{ ${current.value} } -> `;
-    current = current.next;
+  // The class should contain the following methods toString
+  toString() {
+    let current = this.head;
+    let string = '';
+    //goal: "{ a } -> { b } -> { c } -> NULL"
+    while (current) {
+      string += `{ ${current.value} } -> `;
+      current = current.next;
+    }
+    string += 'NULL';
+    return string;
   }
-  string += 'NULL';
-  return string;
-}
 
-//From code challenge 06  linked-list-insertions
-insertBefore(value, newVal) {
-  let current = this.head;
-  let previous = null;
-  while (current) {
-    if (current.value === value) {
-      let newNode = new Node(newVal);
-      newNode.next = current;
-      previous.next = newNode;
+  //From code challenge 06  linked-list-insertions
+  // insertBefore(value, newValue) {
+  //   let current = this.head;
+  //   let previous = null;
+  //   while (current) {
+  //     if (current.value === value) {
+  //       let newNode = new Node(newValue);
+  //       newNode.next = current;
+  //       previous.next = newNode;
+  //       return;
+  //     }
+  //     previous = current;
+  //     current = current.next;
+  //   }
+
+  // }
+
+  insertBefore(value, newValue) {
+    let node = new Node(newValue);
+    if (!this.head) {
       return;
     }
-    previous = current;
-    current = current.next;
+    let current = this.head;
+    while (current.next) {
+      if (current.next.value === value) {
+        let tempNode = current.next;
+        current.next = node;
+        node.next = tempNode;
+        return;
+
+      }
+      current = current.next;
+    }
   }
 
+  // insert after
+  insertAfter(value, newValue) {
+    let node = new Node(newValue);
+    if (!this.head) {
+      return;
+    }
+    let current = this.head;
+    while (current.next) {
+      if (current.value === value) {
+        let tempNode = current.next;
+        current.next = node;
+        node.next = tempNode;
+        return;
+
+      }
+      current = current.next;
+    }
+  }
 }
-
-
-
 
 let list = new LinkedList();
 list.append('a');
