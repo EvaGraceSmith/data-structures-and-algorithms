@@ -176,6 +176,85 @@ test('“Happy Path” where k is not at the end, but somewhere in the middle of
   expect(list.kthFromEnd(1)).toEqual(2);
 });
 
+// Where the length of list 1 is not equal to the length of list 2
+test('Where the length of list 1 is not equal to the length of list 2', () => {
+  const list = new LinkedList();
+  list.append(1);
+  list.append(2);
+  list.append(3);
+  const list2 = new LinkedList();
+  list2.append(1);
+  list2.append(2);
+  expect(list.compare(list2)).toEqual(false);
+});
+
+
+// Where the length of both lists are 0
+test('Where the length of both lists are 0', () => {
+  const list = new LinkedList();
+  const list2 = new LinkedList();
+  expect(list.compare(list2)).toEqual(true);
+});
+
+// Where 2nd list is empty
+test('Where 2nd list is empty', () => {
+  const list = new LinkedList();
+  list.append(1);
+  list.append(2);
+  list.append(3);
+  const list2 = new LinkedList();
+  expect(list.compare(list2)).toEqual(false);
+});
+
+// Where 1st list is empty
+test('Where 1st list is empty', () => {
+  const list = new LinkedList();
+  const list2 = new LinkedList();
+  list2.append(1);
+  list2.append(2);
+  list2.append(3);
+  expect(list.compare(list2)).toEqual(false);
+});
+
+// Where both lists have the same length and same values
+test('Where both lists have the same length and same values', () => {
+  const list = new LinkedList();
+  list.append(1);
+  list.append(2);
+  list.append(3);
+  const list2 = new LinkedList();
+  list2.append(1);
+  list2.append(2);
+  list2.append(3);
+  expect(list.compare(list2)).toEqual(true);
+});
+
+// Where both lists have the same length and different values
+test('Where both lists have the same length and different values', () => {
+  const list = new LinkedList();
+  list.append(1);
+  list.append(2);
+  list.append(3);
+  const list2 = new LinkedList();
+  list2.append(1);
+  list2.append(2);
+  list2.append(4);
+  expect(list.compare(list2)).toEqual(false);
+});
+
+// Where both lists have different length and same values
+test('Where both lists have different length and same values', () => {
+  const list = new LinkedList();
+  list.append(1);
+  list.append(2);
+  list.append(3);
+  const list2 = new LinkedList();
+  list2.append(1);
+  list2.append(2);
+  expect(list.compare(list2)).toEqual(false);
+});
+
+
 
 
 
@@ -207,3 +286,13 @@ test('“Happy Path” where k is not at the end, but somewhere in the middle of
 // Where k is not a positive integer
 // Where the linked list is of a size 1
 // “Happy Path” where k is not at the end, but somewhere in the middle of the linked list
+
+// Where the length of list 1 is not equal to the length of list 2
+// Where the length of both lists are 0
+// Where the length of list 1 is greater than the length of list 2
+// Where the length of list 1 is smaller than the length of list 2
+// Where the length of both lists are equal
+// Where the length of one list is 0
+
+
+
