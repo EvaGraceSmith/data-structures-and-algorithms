@@ -63,23 +63,123 @@ class LinkedList {
   }
 
 
-// The class should contain the following methods toString
-toString() {
-  let current = this.head;
-  let string = '';
-  //goal: "{ a } -> { b } -> { c } -> NULL"
-  while (current) {
-    string += `{ ${current.value} } -> `;
-    current = current.next;
+  // The class should contain the following methods toString
+  toString() {
+    let current = this.head;
+    let string = '';
+    //goal: "{ a } -> { b } -> { c } -> NULL"
+    while (current) {
+      string += `{ ${current.value} } -> `;
+      current = current.next;
+    }
+    string += 'NULL';
+    return string;
   }
-  string += 'NULL';
-  return string;
+
+  //From code challenge 06  linked-list-insertions
+  // insertBefore(value, newValue) {
+  //   let current = this.head;
+  //   let previous = null;
+  //   while (current) {
+  //     if (current.value === value) {
+  //       let newNode = new Node(newValue);
+  //       newNode.next = current;
+  //       previous.next = newNode;
+  //       return;
+  //     }
+  //     previous = current;
+  //     current = current.next;
+  //   }
+
+  // }
+
+  insertBefore(value, newValue) {
+    let node = new Node(newValue);
+    if (!this.head) {
+      return;
+    }
+    let current = this.head;
+    while (current.next) {
+      if (current.next.value === value) {
+        let tempNode = current.next;
+        current.next = node;
+        node.next = tempNode;
+        return;
+
+      }
+      current = current.next;
+    }
+  }
+
+  // insert after
+  insertAfter(value, newValue) {
+    let node = new Node(newValue);
+    if (!this.head) {
+      return;
+    }
+    let current = this.head;
+    while (current.next) {
+      if (current.value === value) {
+        let tempNode = current.next;
+        current.next = node;
+        node.next = tempNode;
+        return;
+
+      }
+      current = current.next;
+    }
+  }
+
+// Write the following method for the Linked List class:
+
+// kth from end
+// argument: a number, k, as a parameter.
+// Return the node’s value that is k places from the tail of the linked list.
+// You have access to the Node class and all the properties on the Linked List class as well as the methods created in previous challenges.
+
+// reference code:
+
+// insert after
+
+// insertAfter(value, newValue){
+//   let node = new Node (newValue);
+//   if (!this.head) {
+//     return;
+//   }
+//   let current = this.head;
+//   while (current.next){
+//     if (current.value===value){
+//       let tempNode=current.next
+//       current.next=node
+//       node.next=tempNode
+//       return
+
+//     }
+
+//     current=current.next
+
+//   }
+// }
+
+
+kthFromEnd(k) {
+  let current = this.head;
+  let counter = 0;
+  while (current.next) {
+      counter++;
+      current = current.next;
+      }
+  let length = counter - k;
+  if (length < 0 || k < 0) {
+      return 'Exception';
+  }
+  current = this.head;
+  for (let i = 0; i < length; i++) {
+      current = current.next;
+  }
+  return current.value;
+  }
 }
-
-}
-
-
-
 
 let list = new LinkedList();
 list.append('a');
@@ -87,6 +187,11 @@ list.append('b');
 list.append('c');
 list.append('d');
 
-console.log(JSON.stringify(list));
+
+const k = 2; // Find the 2nd node from the end
+const kthNodeValue = list.kthFromEnd(k);
+console.log(`The ${k}th node from the end is ${kthNodeValue}`);
+
+//console.log(JSON.stringify(list));
 
 module.exports = LinkedList;
