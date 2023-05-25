@@ -1,4 +1,4 @@
-# Challenge Title
+# Code Challenge - 06
 <!-- Description of the challenge -->
 
 ## Whiteboard Process
@@ -25,6 +25,8 @@
 ## Solution
 <!-- Show how to run your code, and examples of it in action -->
 
+# Code Challenge - 07
+
 ## Whiteboard Process
 ![Class 07 Code Challenge K-th value from end of Linked List](img/Class-07-kth-value.png)
 
@@ -45,6 +47,8 @@
 ### This code was done in collaboration with:
 
 [Malik Sadiki-Torres](https://github.com/MalikTorres)
+
+# Code Challenge - 07
 
 ## Whiteboard Process
 ![Class 08 Code Challenge Zipped Linked List ](img/class-08-linked-list-zip.png)
