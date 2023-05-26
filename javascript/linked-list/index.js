@@ -179,7 +179,48 @@ kthFromEnd(k) {
   }
   return current.value;
   }
+compare (list2) {
+    let current1 = this.head;
+    let current2 = list2.head;
+    if (!current1 && !current2) {
+      return true;
+    }
+    if (!current1 || !current2) {
+        return false;
+    }
+    while (current1 || current2) {
+        if (!current1 || !current2 || current1.value !== current2.value) {
+            return false;
+        }
+        current1 = current1.next;
+        current2 = current2.next;
+    }
+    return true;
 }
+
+
+
+
+
+  ziplist(list1, list2) {
+    let current1 = list1.head;
+    let current2 = list2.head;
+    let newList = new LinkedList();
+    while (current1 || current2) {
+        if (current1) {
+            newList.append(current1.value);
+            current1 = current1.next;
+        }
+        if (current2) {
+            newList.append(current2.value);
+            current2 = current2.next;
+        }
+    }
+    return newList;
+
+}
+}
+
 
 let list = new LinkedList();
 list.append('a');
@@ -193,5 +234,9 @@ const kthNodeValue = list.kthFromEnd(k);
 console.log(`The ${k}th node from the end is ${kthNodeValue}`);
 
 //console.log(JSON.stringify(list));
+
+
+
+
 
 module.exports = LinkedList;
