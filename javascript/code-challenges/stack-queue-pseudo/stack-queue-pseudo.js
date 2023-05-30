@@ -1,28 +1,39 @@
+class StackNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
 class Stack {
   constructor() {
-    this.items = [];
+    this.top = null;
   }
 
   isEmpty() {
-    return this.items.length === 0;
+    return this.top === null;
   }
 
-  push(item) {
-    this.items.push(item);
+  push(value) {
+    const newNode = new StackNode(value);
+    newNode.next = this.top;
+    this.top = newNode;
   }
 
   pop() {
     if (this.isEmpty()) {
       return null;
     }
-    return this.items.pop();
+    const poppedValue = this.top.value;
+    this.top = this.top.next;
+    return poppedValue;
   }
 
   peek() {
     if (this.isEmpty()) {
       return null;
     }
-    return this.items[this.items.length - 1];
+    return this.top.value;
   }
 }
 

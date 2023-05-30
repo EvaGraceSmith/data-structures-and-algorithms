@@ -1,5 +1,5 @@
 
-const { PseudoQueue } = require('../index');
+const { PseudoQueue } = require('../stack-queue-pseudo');
 
 
 describe('PseudoQueue', () => {
