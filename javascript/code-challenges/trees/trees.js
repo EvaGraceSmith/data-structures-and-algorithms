@@ -12,17 +12,22 @@ class Node {
 // Represents a binary tree
 class BinaryTree {
   constructor() {
+    // Initialize the tree with a null root node in order to handle an empty tree because the root node is the entry point to the tree and is the first node that is visited when traversing the tree
     this.root = null; // The root node of the tree
   }
 
   // Depth-first Pre-order Traversal: Visit the root node, then traverse the left subtree, then traverse the right subtree
   preOrder() {
     const result = [];
+    // Call the helper function with the root node and the result array
+    // The helper function will recursively traverse the tree and add the values of the nodes to the result array
     this.preOrderHelper(this.root, result);
     return result;
   }
 
   // Helper function for pre-order traversal
+  // The helper function is recursive because it calls itself
+
   preOrderHelper(node, result) {
     if (node === null) return; // Base case: if the node is null, return
     result.push(node.value); // Visit the node (add its value to the result)
