@@ -93,41 +93,110 @@ class LinkedList {
 
   // }
 
+  // insertBefore(value, newValue) {
+  //   let node = new Node(newValue);
+  //   if (!this.head) {
+  //     return;
+  //   }
+  //   let current = this.head;
+  //   while (current.next) {
+  //     if (current.next.value === value) {
+  //       let tempNode = current.next;
+  //       current.next = node;
+  //       node.next = tempNode;
+  //       return;
+
+  //     }
+  //     current = current.next;
+  //   }
+  // }
+
+  // // insert after
+  // insertAfter(value, newValue) {
+  //   let node = new Node(newValue);
+  //   if (!this.head) {
+  //     return;
+  //   }
+  //   let current = this.head;
+  //   while (current.next) {
+  //     if (current.value === value) {
+  //       let tempNode = current.next;
+  //       current.next = node;
+  //       node.next = tempNode;
+  //       return;
+
+  //     }
+  //     current = current.next;
+  //   }
+  // }
+
+
   insertBefore(value, newValue) {
-    let node = new Node(newValue);
+    const newNode = new Node(newValue);
+
     if (!this.head) {
+      throw new Error('The list is empty. Cannot insert before.');
+    }
+
+    if (this.head.value === value) {
+      newNode.next = this.head;
+      this.head = newNode;
       return;
     }
+
     let current = this.head;
     while (current.next) {
       if (current.next.value === value) {
-        let tempNode = current.next;
-        current.next = node;
-        node.next = tempNode;
+        newNode.next = current.next;
+        current.next = newNode;
         return;
-
       }
       current = current.next;
     }
+
+    throw new Error(`Node with value ${value} not found.`);
   }
 
-  // insert after
   insertAfter(value, newValue) {
-    let node = new Node(newValue);
-    if (!this.head) {
-      return;
-    }
-    let current = this.head;
-    while (current.next) {
-      if (current.value === value) {
-        let tempNode = current.next;
-        current.next = node;
-        node.next = tempNode;
-        return;
+    const newNode = new Node(newValue);
 
+    if (!this.head) {
+      throw new Error('The list is empty. Cannot insert after.');
+    }
+
+    let current = this.head;
+    while (current) {
+      if (current.value === value) {
+        newNode.next = current.next;
+        current.next = newNode;
+        return;
       }
       current = current.next;
     }
+
+    throw new Error(`Node with value ${value} not found.`);
+  }
+
+  delete(value) {
+    if (!this.head) {
+      throw new Error('The list is empty. Cannot delete.');
+    }
+
+    if (this.head.value === value) {
+      this.head = this.head.next;
+      return;
+    }
+
+    let current = this.head;
+    while (current.next) {
+      if (current.next.value === value) {
+        current.next = current.next.next;
+        return;
+      }
+      current = current.next;
+    }
+
+    throw new Error(`Node with value ${value} not found.`);
   }
 }
 
