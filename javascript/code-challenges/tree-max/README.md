@@ -13,7 +13,7 @@
  - [x] README for this challenge is complete
        - [x] Summary, Description, Approach & Efficiency, Solution
        - [x] Picture of whiteboard
-       - [x] [Link to code](https://github.com/EvaGraceSmith/data-structures-and-algorithms/blob/main/javascript/linked-list/index.js) -
+       - [x] [Link to code](https://github.com/EvaGraceSmith/data-structures-and-algorithms/blob/main/javascript/) -
  - [ ] Feature tasks for this challenge are completed
  - [x] Unit tests written and passing
        - [x] “Happy Path” - Expected outcome
