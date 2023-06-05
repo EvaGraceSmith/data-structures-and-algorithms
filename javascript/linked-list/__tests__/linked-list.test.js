@@ -254,11 +254,6 @@ test('Where both lists have different length and same values', () => {
   expect(list.compare(list2)).toEqual(false);
 });
 
-
-
-
-
-
 });
 
 
@@ -294,5 +289,86 @@ test('Where both lists have different length and same values', () => {
 // Where the length of both lists are equal
 // Where the length of one list is 0
 
+
+//zip tests
+
+
+function ziplist(list1, list2) {
+  let current1 = list1.head;
+  let current2 = list2.head;
+  let newList = new LinkedList();
+  while (current1 || current2) {
+    if (current1) {
+      newList.append(current1.value);
+      current1 = current1.next;
+    }
+    if (current2) {
+      newList.append(current2.value);
+      current2 = current2.next;
+    }
+  }
+  return newList;
+}
+
+describe('ziplist', () => {
+  it('should return a new list with elements from two lists interleaved', () => {
+    // Create the first list
+    const list1 = new LinkedList();
+    list1.append('a');
+    list1.append('b');
+    list1.append('c');
+
+    // Create the second list
+    const list2 = new LinkedList();
+    list2.append(1);
+    list2.append(2);
+    list2.append(3);
+
+    // Expected result: 'a' -> 1 -> 'b' -> 2 -> 'c' -> 3 -> NULL
+    const expectedList = new LinkedList();
+    expectedList.append('a');
+    expectedList.append(1);
+    expectedList.append('b');
+    expectedList.append(2);
+    expectedList.append('c');
+    expectedList.append(3);
+
+    expect(ziplist(list1, list2).toString()).toBe(expectedList.toString());
+  });
+
+  it('should handle lists with different lengths', () => {
+    // Create the first list
+    const list1 = new LinkedList();
+    list1.append('a');
+    list1.append('b');
+    list1.append('c');
+
+    // Create the second list
+    const list2 = new LinkedList();
+    list2.append(1);
+    list2.append(2);
+
+    // Expected result: 'a' -> 1 -> 'b' -> 2 -> 'c' -> NULL
+    const expectedList = new LinkedList();
+    expectedList.append('a');
+    expectedList.append(1);
+    expectedList.append('b');
+    expectedList.append(2);
+    expectedList.append('c');
+
+    expect(ziplist(list1, list2).toString()).toBe(expectedList.toString());
+  });
+
+  it('should return an empty list if both input lists are empty', () => {
+    // Create empty lists
+    const list1 = new LinkedList();
+    const list2 = new LinkedList();
+
+    // Expected result: NULL
+    const expectedList = new LinkedList();
+
+    expect(ziplist(list1, list2).toString()).toBe(expectedList.toString());
+  });
+});
 
 
