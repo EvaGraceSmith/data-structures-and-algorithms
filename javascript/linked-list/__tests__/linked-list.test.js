@@ -5,6 +5,7 @@ const LinkedList = require('../index');
 
 
 
+
 describe('LinkedList', () => {
   let list;
 
@@ -43,6 +44,7 @@ describe('LinkedList', () => {
     list.insert('b');
     list.insert('c');
     expect(list.includes('b')).toBe(true);
+
   });
 
   it('should return false when searching for a value that does not exist in the linked list', () => {
@@ -59,80 +61,50 @@ describe('LinkedList', () => {
     expect(list.toString()).toBe('{ c } -> { b } -> { a } -> NULL');
   });
 
-
-
-
-
-
-  // Can successfully add a node to the end of the linked list
-test('Can successfully add a node to the end of the linked list', () => {
-  const list = new LinkedList();
-  list.append(1);
-  expect(list.head.value).toEqual(1);
-  expect(list.head.next).toBeNull();
-
-});
-
-
-  test('Can successfully add multiple nodes to the end of a linked list', () => {
-    const list = new LinkedList();
-    list.append(1);
-    list.append(2);
-    expect(list.head.value).toEqual(1);
-    expect(list.head.next.value).toEqual(2);
-    expect(list.head.next.next).toBeNull();
+  it('should add a node to the end of the linked list', () => {
+    list.append('a');
+    expect(list.head.value).toBe('a');
+    expect(list.head.next).toBeNull();
   });
 
-  // Can successfully insert a node before a node located in the middle of a linked list
-  test('Can successfully insert a node before a node located in the middle of a linked list', () => {
-    const list = new LinkedList();
-    list.append(1);
-    list.append(2);
-    list.append(3);
-    list.insertBefore(2, 5);
-    expect(list.head.value).toEqual(1);
-    expect(list.head.next.value).toEqual(5);
-    expect(list.head.next.next.value).toEqual(2);
-    expect(list.head.next.next.next.value).toEqual(3);
+  it('should add multiple nodes to the end of the linked list', () => {
+    list.append('a');
+    list.append('b');
+    list.append('c');
+    expect(list.head.value).toBe('a');
+    expect(list.head.next.value).toBe('b');
+    expect(list.head.next.next.value).toBe('c');
+    expect(list.head.next.next.next).toBeNull();
   });
 
-  // Can successfully insert a node before the first node of a linked list
-  test('Can successfully insert a node before the first node of a linked list', () => {
-    const list = new LinkedList();
-    list.append(1);
-    list.append(2);
-    list.append(3);
-    list.insertBefore(3, 5);
-    expect(list.head.value).toEqual(1);
-    expect(list.head.next.value).toEqual(2);
-    expect(list.head.next.next.value).toEqual(5);
-    expect(list.head.next.next.next.value).toEqual(3);
+  it('should insert a node before a node located in the middle of the linked list', () => {
+    list.append('a');
+    list.append('b');
+    list.append('c');
+    list.insertBefore('b', 'd');
+    expect(list.toString()).toBe('{ a } -> { d } -> { b } -> { c } -> NULL');
   });
 
-  // Can successfully insert after a node in the middle of the linked list
-  test('Can successfully insert after a node in the middle of the linked list', () => {
-    const list = new LinkedList();
-    list.append(1);
-    list.append(2);
-    list.append(3);
-    list.insertAfter(2, 5);
-    expect(list.head.value).toEqual(1);
-    expect(list.head.next.value).toEqual(2);
-    expect(list.head.next.next.value).toEqual(5);
-    expect(list.head.next.next.next.value).toEqual(3);
+  it('should insert a node before the first node of the linked list', () => {
+    list.append('a');
+    list.append('b');
+    list.insertBefore('a', 'd');
+    expect(list.toString()).toBe('{ d } -> { a } -> { b } -> NULL');
   });
 
-  // Can successfully insert a node after the last node of the linked list
-  test('Can successfully insert a node after the last node of the linked list', () => {
-    const list = new LinkedList();
-    list.append(1);
-    list.append(2);
-    list.append(3);
-    list.insertAfter(1, 5);
-    expect(list.head.value).toEqual(1);
-    expect(list.head.next.value).toEqual(5);
-    expect(list.head.next.next.value).toEqual(2);
-    expect(list.head.next.next.next.value).toEqual(3);
+  it('should insert a node after a node located in the middle of the linked list', () => {
+    list.append('a');
+    list.append('b');
+    list.append('c');
+    list.insertAfter('b', 'd');
+    expect(list.toString()).toBe('{ a } -> { b } -> { d } -> { c } -> NULL');
+  });
+
+  it('should insert a node after the last node of the linked list', () => {
+    list.append('a');
+    list.append('b');
+    list.insertAfter('b', 'c');
+    expect(list.toString()).toBe('{ a } -> { b } -> { c } -> NULL');
   });
 
 // Where k is greater than the length of the linked list
@@ -192,6 +164,30 @@ test('Where the length of list 1 is not equal to the length of list 2', () => {
 });
 
 
+  it('should delete a node from the linked list', () => {
+    list.append('a');
+    list.append('b');
+    list.append('c');
+    list.delete('b');
+    expect(list.toString()).toBe('{ a } -> { c } -> NULL');
+  });
+
+
+  it('should throw an error when trying to delete from an empty linked list', () => {
+    expect(() => {
+      list.delete('a');
+    }).toThrow('The list is empty. Cannot delete.');
+  });
+
+  it('should throw an error when the node to delete is not found in the linked list', () => {
+    list.append('a');
+    list.append('b');
+    list.append('c');
+    expect(() => {
+      list.delete('d');
+    }).toThrow('Node with value d not found.');
+  });
+
 // Where the length of both lists are 0
 test('Where the length of both lists are 0', () => {
   const list = new LinkedList();
@@ -207,6 +203,7 @@ test('Where 2nd list is empty', () => {
   list.append(3);
   const list2 = new LinkedList();
   expect(list.compare(list2)).toEqual(false);
+
 });
 
 // Where 1st list is empty
@@ -218,6 +215,7 @@ test('Where 1st list is empty', () => {
   list2.append(3);
   expect(list.compare(list2)).toEqual(false);
 });
+
 
 // Where both lists have the same length and same values
 test('Where both lists have the same length and same values', () => {
@@ -231,6 +229,7 @@ test('Where both lists have the same length and same values', () => {
   list2.append(3);
   expect(list.compare(list2)).toEqual(true);
 });
+
 
 // Where both lists have the same length and different values
 test('Where both lists have the same length and different values', () => {
@@ -281,6 +280,9 @@ test('Where both lists have different length and same values', () => {
 // Can successfully insert after a node in the middle of the linked list
 // Can successfully insert a node after the last node of the linked list
 
+// Can successfully delete a node with a value in the middle of the linked list
+
+
 //
 // Unit Tests
 // Write tests for the following scenarios, and any other cases that help you ensure your code is working as expected.
@@ -297,6 +299,7 @@ test('Where both lists have different length and same values', () => {
 // Where the length of list 1 is smaller than the length of list 2
 // Where the length of both lists are equal
 // Where the length of one list is 0
+
 
 
 
