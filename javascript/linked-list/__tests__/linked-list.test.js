@@ -3,59 +3,63 @@
 // Require our linked list implementation
 const LinkedList = require('../index');
 
-describe('Linked List', () => {
-  test('Can successfully instantiate an empty linked list', () => {
-    const list = new LinkedList();
+
+
+describe('LinkedList', () => {
+  let list;
+
+  beforeEach(() => {
+    list = new LinkedList();
+  });
+
+  it('should instantiate an empty linked list', () => {
     expect(list.head).toBeNull();
   });
 
-  test('Can properly insert into the linked list', () => {
-    const list = new LinkedList();
-    list.insert(1);
-    expect(list.head.value).toEqual(1);
+  it('should properly insert into the linked list', () => {
+    list.insert('a');
+    expect(list.head.value).toBe('a');
     expect(list.head.next).toBeNull();
   });
 
-  test('The head property will properly point to the first node in the linked list', () => {
-    const list = new LinkedList();
-    list.insert(2);
-    expect(list.head.value).toEqual(2);
-    expect(list.head.next).toBeNull();
+  it('should update the head property when inserting into a non-empty linked list', () => {
+    list.insert('a');
+    list.insert('b');
+    expect(list.head.value).toBe('b');
+    expect(list.head.next.value).toBe('a');
   });
 
-  test('Can properly insert multiple nodes into the linked list', () => {
-    const list = new LinkedList();
-    list.insert(1);
-    list.insert(2);
-    expect(list.head.value).toEqual(2);
-    expect(list.head.next.value).toEqual(1);
-    expect(list.head.next.next).toBeNull();
-    list.append('a');
-    expect(list.head.next.next.value).toEqual('a');
+  it('should insert multiple nodes into the linked list', () => {
+    list.insert('a');
+    list.insert('b');
+    list.insert('c');
+    expect(list.head.value).toBe('c');
+    expect(list.head.next.value).toBe('b');
+    expect(list.head.next.next.value).toBe('a');
   });
 
-  test('Will return true when finding a value within the linked list that exists', () => {
-    const list = new LinkedList();
-    const firstValue = 1;
-    const secondValue = 2;
-    list.insert(firstValue);
-    list.insert(secondValue);
-    expect(list.includes(firstValue)).toBeTruthy();
+  it('should return true when finding a value that exists in the linked list', () => {
+    list.insert('a');
+    list.insert('b');
+    list.insert('c');
+    expect(list.includes('b')).toBe(true);
   });
 
-  test('Will return false when searching for a value in the linked list that does not exist', () => {
-    const list = new LinkedList();
-    const firstValue = 1;
-    const secondValue = 2;
-
-    list.insert(firstValue);
-    list.insert(secondValue);
+  it('should return false when searching for a value that does not exist in the linked list', () => {
+    list.insert('a');
+    list.insert('b');
+    list.insert('c');
+    expect(list.includes('d')).toBe(false);
   });
 
-  it('works', () => {
-    expect(true).toBeTruthy();
+  it('should properly return a collection of all the values in the linked list', () => {
+    list.insert('a');
+    list.insert('b');
+    list.insert('c');
+    expect(list.toString()).toBe('{ c } -> { b } -> { a } -> NULL');
   });
 });
+
 
 
 // Can successfully instantiate an empty linked list
