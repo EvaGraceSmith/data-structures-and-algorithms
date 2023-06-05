@@ -101,3 +101,6 @@ class BinarySearchTree extends BinaryTree {
     }
   }
 }
+module.exports = {
+  BinarySearchTree
+};
