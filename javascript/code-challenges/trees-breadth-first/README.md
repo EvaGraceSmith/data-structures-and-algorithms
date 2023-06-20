@@ -2,9 +2,7 @@
 <!-- Description of the challenge -->
 
 ## Whiteboard Process
-![Class 16 Code Challenge](img/class-16-whiteboard.png)
-
-## Collaboration
+![Class 15 Code Challenge](img/class-15-whiteboard.png)
 
 
 
@@ -15,7 +13,7 @@
  - [x] README for this challenge is complete
        - [x] Summary, Description, Approach & Efficiency, Solution
        - [x] Picture of whiteboard
-       - [x] [Link to code](https://github.com/EvaGraceSmith/data-structures-and-algorithms/tree/main/javascript/code-challenges) -
+       - [x] [Link to code](https://github.com/EvaGraceSmith/data-structures-and-algorithms/blob/main/javascript/linked-list/index.js) -
  - [ ] Feature tasks for this challenge are completed
  - [x] Unit tests written and passing
        - [x] “Happy Path” - Expected outcome
