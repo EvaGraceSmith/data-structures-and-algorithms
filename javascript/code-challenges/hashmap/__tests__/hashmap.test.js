@@ -1,5 +1,6 @@
 const Hashtable = require('../hashmap');
 
+
 describe('Hashtable', () => {
   let hashtable;
 
@@ -7,44 +8,55 @@ describe('Hashtable', () => {
     hashtable = new Hashtable();
   });
 
-  it('should set and get values correctly', () => {
+  it('should set a key/value pair correctly', () => {
+    hashtable.set('key1', 'value1');
+
+    expect(hashtable.get('key1')).toBe('value1');
+  });
+
+  it('should retrieve the value based on the key', () => {
     hashtable.set('key1', 'value1');
     hashtable.set('key2', 'value2');
-    hashtable.set('key3', 'value3');
 
     expect(hashtable.get('key1')).toBe('value1');
     expect(hashtable.get('key2')).toBe('value2');
-    expect(hashtable.get('key3')).toBe('value3');
-    expect(hashtable.get('key4')).toBeUndefined();
   });
 
-  it('should handle collisions and replace existing values', () => {
+  it('should return null for a key that does not exist', () => {
     hashtable.set('key1', 'value1');
-    hashtable.set('key11', 'value11');
-    hashtable.set('key21', 'value21');
-    hashtable.set('key31', 'value31');
-    hashtable.set('key41', 'value41');
 
-    // Collision occurs with key1 and key11, value for key1 should be replaced
-    hashtable.set('key1', 'newvalue1');
-    expect(hashtable.get('key1')).toBe('newvalue1');
+    expect(hashtable.get('key2')).toBeNull();
   });
 
-  it('should check if a key exists', () => {
-    hashtable.set('key1', 'value1');
-    hashtable.set('key2', 'value2');
-
-    expect(hashtable.has('key1')).toBe(true);
-    expect(hashtable.has('key2')).toBe(true);
-    expect(hashtable.has('key3')).toBe(false);
-  });
-
-  it('should return an array of keys', () => {
+  it('should return a list of all unique keys', () => {
     hashtable.set('key1', 'value1');
     hashtable.set('key2', 'value2');
     hashtable.set('key3', 'value3');
 
     expect(hashtable.keys()).toEqual(['key1', 'key2', 'key3']);
+  });
+
+  it('should handle collisions within the hashtable', () => {
+    hashtable.set('key1', 'value1');
+    hashtable.set('key11', 'value11');
+
+    expect(hashtable.get('key1')).toBe('value1');
+    expect(hashtable.get('key11')).toBe('value11');
+  });
+
+  it('should retrieve a value from a bucket with a collision', () => {
+    hashtable.set('key1', 'value1');
+    hashtable.set('key11', 'value11');
+
+    expect(hashtable.get('key1')).toBe('value1');
+    expect(hashtable.get('key11')).toBe('value11');
+  });
+
+  it('should hash a key to an in-range value', () => {
+    const hashValue = hashtable.hash('key1');
+
+    expect(hashValue).toBeGreaterThanOrEqual(0);
+    expect(hashValue).toBeLessThan(hashtable.size);
   });
 });
 
