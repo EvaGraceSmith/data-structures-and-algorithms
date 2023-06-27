@@ -1,4 +1,4 @@
-const leftJoin = require('./leftJoin');
+const leftJoin = require('../hashmap-left-join');
 
 // Example test case
 describe('leftJoin', () => {
