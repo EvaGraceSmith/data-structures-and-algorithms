@@ -20,7 +20,7 @@ Arguments: key
 Returns: Index in the collection for that key
 
 ## Whiteboard Process
-![Class 30 Code Challenge](img/class-30-whiteboard.png)
+
 
 ## Collaboration
 
