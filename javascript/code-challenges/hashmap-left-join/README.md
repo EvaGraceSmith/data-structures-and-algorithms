@@ -14,9 +14,11 @@ LEFT JOIN means all the values in the first hashmap are returned, and if values 
 If no values exist in the right hashmap, then some flavor of NULL should be appended to the result row.
 
 ## Whiteboard Process
-![Class 32 Code Challenge](img/class-32-whiteboard.png)
+![Class 33 Code Challenge](img/class-33-whiteboard.png)
 
 ## Collaboration
+
+Katherine Lee
 
 
 
